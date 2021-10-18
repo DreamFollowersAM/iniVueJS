@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>JAVASCRIPT - DREAM FOLLOWERS</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+    <link
+      rel="stylesheet"
+      href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+    />
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/3.6.0/mdb.min.css"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <nav class="navbar navbar-expand-lg bg-dark navbar-dark fixed-top">
+      <div class="container-fluid">
+        <a class="navbar-brand" href="#">JAVASCRIPT - DREAM FOLLOWERS</a>
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-mdb-toggle="collapse"
+          data-mdb-target="#navbarSupportedContent"
+          aria-controls="navbarSupportedContent"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          <i class="fas fa-bars"></i>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-mdb-toggle="dropdown" aria-expanded="false">
+                Actividades
+              </a>
+              <!-- Dropdown menu -->
+              <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                <li>
+                  <a class="dropdown-item" href="https://dreamfollowersam.github.io/JSprimitivas/">Primitivas</a>
+                </li>
+                <li>
+                  <a class="dropdown-item" href="https://dreamfollowersam.github.io/localstorage/">Reservaciones</a>
+                </li>
+                <li>
+                  <a class="dropdown-item" href="https://dreamfollowersam.github.io/tarjeta/">Tarjeta</a>
+                </li>
+                <li>
+                  <hr class="dropdown-divider" />
+                </li>
+                <li>
+                  <a class="dropdown-item" href="#">Ini Vue JS</a>
+                </li>
+              </ul>
+            </li>
+          </ul>
+
+          <ul class="navbar-nav d-flex flex-row me-1">
+            <li class="nav-item me-3 me-lg-0">
+              <a
+                class="nav-link"
+                href="https://www.instagram.com/_dream_followers_am/"
+                target="_blank"
+                ><i class="fab fa-instagram"></i
+              ></a>
+            </li>
+            <li class="nav-item me-3 me-lg-0">
+              <a
+                class="nav-link"
+                href="https://twitter.com/_DreamFollowers"
+                target="_blank"
+                ><i class="fab fa-twitter"></i
+              ></a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+    <div id="section">
+      <div class="container-fluid w-100 mt-5 p-3">
+        <h3 class="text-center">Cuestionario</h3>
+        <form>
+          <fieldset class="form-group">
+            <div class="row">
+              <legend class="col-form-label col-sm-2 pt-0">
+                ¿Te gusta programar?
+              </legend>
+              <div class="col-sm-10">
+                <div class="form-check">
+                  <input
+                    class="form-check-input"
+                    type="radio"
+                    name="p1"
+                    id="p11"
+                    value="si"
+                    v-model="p1"
+                  />
+                  <label class="form-check-label" for="p11"> Sí </label>
+                </div>
+                <div class="form-check">
+                  <input
+                    class="form-check-input"
+                    type="radio"
+                    name="p1"
+                    id="p12"
+                    value="no"
+                    v-model="p1"
+                  />
+                  <label class="form-check-label" for="p12"> No </label>
+                </div>
+              </div>
+            </div>
+          </fieldset>
+          <div v-if="p1=='si'">
+            <div class="form-group row">
+              <label for="p2" class="col-sm-2 col-form-label"
+                >¿Cuántos años llevas programando?</label
+              >
+              <div class="col-sm-10">
+                <input type="number" class="form-control" id="p2" name="p2" v-model="p2" />
+              </div>
+            </div>
+            <div class="form-group row" v-if="p2<2">
+              <label for="p3" class="col-sm-2 col-form-label"
+                >¿Qué te motiva a programar?</label
+              >
+              <div class="col-sm-10">
+                <input type="text" class="form-control" id="p3" name="p3" v-model="p3" />
+              </div>
+            </div>
+            <div class="form-group row" v-else>
+              <label for="p4" class="col-sm-2 col-form-label"
+                >Cuentanos tu experiencia programando</label
+              >
+              <div class="col-sm-10">
+                <input type="text" class="form-control" id="p4" name="p4" v-model="p4"/>
+              </div>
+            </div>
+            <div class="form-group row">
+              <label for="p5" class="col-sm-2 col-form-label"
+                >¿Cuántos lenguajes de programacion conoces? introduce uno a
+                uno</label
+              >
+              <div class="col-sm-10">
+                <input type="text" class="form-control" id="p5" name="p5" v-model="p5" @keyup.enter="add()" />
+              </div>
+            </div>
+          </div>
+          <div v-else>
+            <h3>gracias por apoyarnos</h3>
+          </div>
+        </form>
+      </div>
+      <div class="container-fluid w-100 mt-5 p-3" v-if="p1=='si'">
+        <h3 class="text-center">Resumen</h3>
+        <h5>¿Te gusta programar?</h5>
+        <p>{{p1}}</p>
+        <h5>¿Cuántos años llevas programando?</h5>
+        <p>{{p2}}</p>
+        <div v-if="p2<2">
+          <h5>¿Qué te motiva a programar?</h5>
+          <p>{{p3}}</p>
+        </div>
+        <div v-else>
+          <h5>Cuentanos tu experiencia programando</h5>
+          <p>{{p4}}</p>
+        </div>
+        <h5>¿Cuántos lenguajes de programacion conoces?</h5>
+        <ul>
+          <li v-for="(lengu,index) in p5s" :key="index">{{lengu}}</li>
+        </ul>
+      </div>
+    </div>
+
+    <footer class="bg-dark text-center text-white">
+      <div class="container p-4">
+        <section class="mb-3">
+          <p>
+            Practicas de javascript desarrolladas para la materia de frameworks
+            en el grupo EVN401, en la carrera Entornos Virtuales y Negocios
+            Digitales de la Universidad Tecnologica de Leon, bajo la mentoria de
+            la profesora Anahi Torres Tinoco.
+          </p>
+        </section>
+      </div>
+      <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.2)">
+        © 2020 Copyright:
+        <a
+          class="text-white"
+          href="https://www.instagram.com/_dream_followers_am/"
+          target="_blank"
+          >Dream Followers</a
+        >
+      </div>
+    </footer>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+    <script
+      type="text/javascript"
+      src="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/3.6.0/mdb.min.js"
+    ></script>
+    <script src="js/index.js"></script>
+  </body>
+</html>
